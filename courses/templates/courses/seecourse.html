@@ -1,0 +1,145 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>See Course</title>
+        <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+<!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet"/>
+
+        <link rel="stylesheet" href={% static 'courses/seecourse.css' %}>
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    </head>
+
+    <body>
+      
+        <br>
+<div class="header-videos">
+<a href="/courses/{{tid}}"><i class="fas fa-angle-left fa-2x"></i></a>
+
+<a  href="/courses/add_video/{{id}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> 
+  New Video</a>
+</div>
+<br><br><br>
+        <!-- Gallery -->
+
+
+
+        <div class="hd-cards">
+
+    {% for i in videos %}
+    
+    
+      
+        <div class="card">
+          <a href="/courses/see_video/{{i.0.id}}">
+          <img class="card-img-top" src="{{i.0.vid_thumbnail.url}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{i.0.title|truncatechars:40}}</h5>
+            <p class="card-text">
+              {{i.0.description|truncatechars:80}}
+              <div class="card-bdy">
+                <p class="card-text header-videos"><small class="text-muted"><i class="fas fa-eye"></i>1000<i class="far fa-user"></i>admin</small>
+                  <a href="{% url 'delete_video' i.0.id %}" class="btn btn-primary" ><i class="fa fa-trash-o"></i></a></p>
+                  <i class="fas fa-ellipsis-v"></i>
+              </div>
+        </div>
+          </a>
+        </div>
+        <!-- {{i.0.title}} -->
+       
+
+        {% if i.1 is not None %}
+        <div class="card">
+          <a href="/courses/see_video/{{i.1.id}}">
+          <img class="card-img-top" src="{{i.1.vid_thumbnail.url}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{i.1.title|truncatechars:40}}</h5>
+            <p class="card-text">
+             {{i.1.description|truncatechars:80}}
+            </p>
+            <div class="card-bdy">
+            <p class="card-text header-videos">
+              <small class="text-muted">
+                <i class="fas fa-eye"></i>1000
+                <i class="far fa-user"></i>admin
+              </small>
+              <a href="{% url 'delete_video' i.1.id %}" class="btn btn-primary" ><i class="fa fa-trash-o"></i></a>
+              </p>
+          </div>
+          </div>
+          </a>
+        </div>
+
+        {% endif %}
+
+     
+    
+    
+  {% endfor %}
+</div>
+  
+    <!-- <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+      <img
+        style="height:20rem; width: 25rem;"
+        src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt=""
+      />
+  
+      <img
+      style="height:20rem"
+        src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt=""
+      />
+
+    </div> -->
+  
+
+    <!-- <div class="col-lg-4 mb-4 mb-lg-0">
+      <img
+      style="height:20rem"
+        src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt=""
+      />
+  
+      <img
+      style="height:20rem"
+        src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt=""
+      />
+    </div>
+  
+    <div class="col-lg-4 mb-4 mb-lg-0">
+      <img
+      style="height:20rem"
+        src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt=""
+      />
+  
+      <img
+      style="height:20rem"
+        src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt=""
+      />
+    </div>
+
+     -->
+  
+  <!-- Gallery -->
+    </body>
+</html>

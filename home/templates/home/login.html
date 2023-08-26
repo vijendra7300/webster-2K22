@@ -1,0 +1,110 @@
+{% load static %}
+{% load socialaccount %}
+<html>
+    <head>
+        <title>Login</title>
+        <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+        <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+        <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/sign.css' %}">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/toast.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/login.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+
+    <body style="background-color: aliceblue;">
+
+        <br><br>
+       
+
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row container d-flex justify-content-center"> </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- <a style="margin-left: 105px;" href="/"><button style="cursor: pointer;" class="col btn btn-pink-moon">Back to Home</button></a> -->
+            <a style="margin-left: 380px; margin-top: 1rem;font-size:large;" href="/" class="previous round">&#8249;</a>
+        
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form method="POST" action="/login/"  class="box">
+                            {% csrf_token %}
+                            <h1>Login</h1>
+                            <p class="text-muted" style="color: white;"> Please enter your Email and password!</p>
+                             <input type="email" name="email" placeholder="Email Id" required> 
+                             <input type="password" name="password" placeholder="Password" required>
+                              <a class="forgot text-muted" href="/forgot/" style="text-decoration: none; color: rgb(242, 247, 247);">Forgot password?</a> 
+                              <input type="submit" value="Login">
+                            <div class="col-md-12">
+                                <ul class="social-network social-circle">
+                                    <li><a href={% provider_login_url 'google' %} class="icoGoogle" title="Google"><i style="font-size:50px;color: white;" class="fa fa-google"></i></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <script>  
+            function addToast(message) {
+                  
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "showDuration": "300",
+                        "hideDuration": "3000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+
+                    }
+                toastr["error"](message);
+            }
+        
+        
+            {% if messages %}
+                {% for message in messages %}
+                let x;
+                let msg="{{message}}";
+                let l=msg.length;
+                let chk="Successfully signed in as";
+                if(l<=25){
+                    addToast("{{ message }}");
+                }
+                
+                else
+                {
+                    x=msg.substring(0,25);
+                    
+                    if(x!=chk){
+                        addToast(msg);
+                    }
+                }
+
+                {% endfor %}
+            {% endif %}
+        
+        
+        </script>
+
+
+    </body>
+</html>

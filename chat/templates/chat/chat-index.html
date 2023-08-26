@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/userhome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/chat.css' %}">
+    <!-- <script src="{% static 'chat/chat.js' %}"></script> -->
+    <title>Chat</title>
+</head>
+<!-- <body style="background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/08/Free-crack-wall-photos.jpg');"> -->
+  <body style="background-image: url('https://www.coe.int/documents/21202288/42594985/Visual_Education_for_Democracy_in_the_Republic_of_Moldova.jpg/d83b18b0-afea-2746-32de-088bf2017243?t=1579702120000');background-repeat: no-repeat;background-size: cover;">
+    <button style="outline: none;border: none;background-color: white;margin-left: 2rem;margin-top: 2rem;" ><a style="text-decoration: none;outline: none;border: none;color: green;" href="/">Back to Home</a></button>
+      <br>
+      <br>
+     
+    
+    <a  href="/chat/create-room/"><button style="width: 16rem;margin-top: 25rem;margin-left: 24rem;background-color: darkgreen;" class="button"><span>Create Room</span></button></a>
+    <a href="/chat/join-room/"><button style="width: 16rem;margin-left: 20rem;" class="button"><span>Join Room</span></button></a>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Chat</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/userhome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/create.css' %}">
+</head>
+<body>
+    <body style="background-image: url('https://images8.alphacoders.com/719/thumb-1920-719873.jpg');background-repeat: no-repeat;background-size: cover;">
+          <br><br><br><br><br>
+          <div style="margin-left: 5rem;">
+    <form action="/chat/handle_join_room/" method="post">
+        {% csrf_token %}
+        <input  style="font-size: larger;" type="text" autocomplete="off" placeholder="Room Name"required class="formStyle" name="roomName"><br>
+        <input style="font-size: larger;" type="password" placeholder="Password" class="formStyle" name="password"><br>
+        <button style="margin-top: 4rem;margin-right: 76rem;" class="formButton" type="submit">Join Room</button>
+    </form>
+
+
+    <div style="margin-top: 0px; color: white;position: absolute; left: 1000px;">
+
+    <h1>Public Rooms: </h1><br>
+    {% for room in rooms %}
+
+      Room name: {{room.roomName}}   <br>
+      Password: {{room.password}} <br>
+      <br>
+
+    {% endfor %}
+
+  </div>
+</div>
+</body>
+</html>

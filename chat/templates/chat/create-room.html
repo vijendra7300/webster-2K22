@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Chat</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/userhome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/create.css' %}">
+</head>
+<body style="background-image: url('https://images8.alphacoders.com/719/thumb-1920-719873.jpg');background-repeat: no-repeat;background-size: cover;">
+
+      <br><br><br><br><br>
+      <div style="margin-left: 500px;">
+        <form action="/chat/create-room/" method="post">
+            {% csrf_token %}
+            <!-- <input autocomplete="off" style="font-size: larger;" type="text" value="{{username}}" class="formStyle" readonly name="adminName"><br> -->
+            <input autocomplete="off" style="font-size: larger;" type="text" placeholder="Room Name" required class="formStyle" name="roomName"><br>
+            <input autocomplete="off" style="font-size: larger;" type="number" placeholder="Limit of Members"required class="formStyle" name="limit"><br>
+            <input autocomplete="off" style="font-size: larger;" type="text" placeholder="Password for Room" class="formStyle" name="password"><br>
+            <div style="margin-left: 120px;">
+            <span style="margin-right: 20px; font-size: 25px; color: white;">  Public <input required type="radio" name="which" value="public"></span>
+           <span style="font-size: 25px; color: white;"> Private <input required type="radio" name="which" value="private"> </span>
+           </div>
+           <br>
+            <button  class="formButton" type="submit">Create Room</button>
+        </form>
+      </div>
+    
+
+    </form>
+</body>
+</html>

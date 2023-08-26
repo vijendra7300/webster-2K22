@@ -1,0 +1,28 @@
+.card-group{
+    margin-top: 5%;
+height: 50%;
+width: 50%;
+margin-left: 24%;
+}
+.card{
+    height: auto;
+    margin-left:4%;
+}
+body{
+    background-image: url('https://free4kwallpapers.com/uploads/originals/2015/07/25/open-book.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card-img-top{
+}
+/* .card-group > .card:not(:last-child) .card-footer, .card-group > .card:not(:last-child) .card-img-bottom {
+    border-bottom-right-radius: 0;
+    justify-content: center;
+    align-self: center;
+} */
+.card-group > .card:not(:first-child) {
+    /* border-top-left-radius: 0; */
+    /* border-bottom-left-radius: 0; */
+    /* align-self: stretch; */
+    margin-left: 4%;
+}

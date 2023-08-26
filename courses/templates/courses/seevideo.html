@@ -1,0 +1,362 @@
+{% load static %}
+<html>
+    <head>
+        <title>See Video</title>
+        <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="{% static 'courses/all.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudlflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'courses/style.css' %}">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+        <link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+></script>
+
+<style>
+    .cnt{
+        color: aliceblue;
+        font-size: 20px;
+    }
+</style>
+
+
+
+    </head>
+
+
+
+
+    
+    <body style="background-color: brown;">
+        <br>
+
+       
+
+        <button style="background-color: brown;outline: none;border: 0ch;" onclick="goBack()"><i class="fa fa-arrow-circle-left" style="font-size:48px;color:white"></i></button>
+
+    <table style="margin-left: 5rem;">
+        <tr>
+
+        <td>
+          <div  id="videoContainer" class="videoContainer" data-fullscreen="false">
+            <div class="c-video">
+                <video id="video" class="video" controls preload="metadata" poster="img/poster.jpg">
+                    <source src="{{video.video.url}}" type="video/mp4">
+                </video>
+                <div id="video-controls" class="controls" data-state="hidden">
+                    <div class="progress">
+                        <progress id="progress" class="orange-juice" value="0" min="0">
+                            <span id="progress-bar"></span>
+                        </progress>
+                    </div>
+                    <div class="buttons">
+                        <button id="playpause" type="button" data-state="play"></button>
+                        <button id="stop" type="button" data-state="stop"></button>
+                        <button id="mute" type="button" data-state="mute"></button>
+                        <button id="volinc" type="button" data-state="volup"></button>
+                        <button id="voldec" type="button" data-state="voldown"></button>
+                        <button id="fs" type="button" data-state="go-fullscreen"></button>
+                        <button id="forword" type="button" data-state="10add"></button>
+                        <button id="back" type="button" data-state="10sub"></button>
+                        <button id="FAST" type="button" data-state="fast"></button>
+                        <button id="SLOW" type="button" data-state="slow"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+        {% if not is_liked and not is_disliked %}
+        <button style="margin-left: 1rem;"  id="likeBtn" class="btn btn-primary">LIKE</button>
+        <span class="cnt lcount">{{tot_like}}</span>
+
+        <button  class="btn btn-primary" id="disBtn" >DISLIKE</button>
+        <span class="cnt dcount">{{tot_dislike}}</span>
+        
+
+        {% elif not is_liked %}
+        <button style="margin-left: 1rem;"  id="likeBtn" class="btn btn-primary">LIKE</button>
+        <span class="cnt lcount">{{tot_like}}</span>
+
+        <button  class="btn btn-primary" id="disBtn" >DISLIKED</button>
+        <span class="cnt dcount">{{tot_dislike}}</span>
+
+        {%else%}
+        <button style="margin-left: 1rem;"  id="likeBtn" class="btn btn-primary">LIKED</button>
+        <span class="cnt lcount">{{tot_like}}</span>
+
+        <button  class="btn btn-primary" id="disBtn" >DISLIKE</button>
+        <span class="cnt dcount">{{tot_dislike}}</span>
+        {%endif%}
+
+        <button class="btn btn-primary">Share</button>
+        <button style="margin-left: 35rem;" class="btn btn-primary" onclick="play_prev_video()">Previous</button>
+        <button class="btn btn-primary" onclick="play_next_video()">Next</button>
+    </td>
+
+    <td>
+        <div class="all-comment">
+            <div id="cmnt_container" class="comments-container">
+                {%for comment in comments %}
+                <div class="comments-box">
+                <ul class="comments-wrapper">
+                    <li class="comments-body">
+                    <div class="comments-img">UserName:</div>
+                    <div class="comments-text">{{comment.msg}}</div>
+                    </li>
+                 
+                    
+                </ul>
+                    
+                </div>
+               {% endfor %}
+                <!-- <span required id="comments-prepend"></span> -->
+            </div>
+            <div class="comments-input">
+            <input type="text" id="commenttxt" class="comments-input">
+            <button value="Comment" id="comment"class="btn btn-primary">Comments</button>
+             </div>
+        </div>
+        
+   
+    
+      </td>
+    </tr>
+    </table>
+
+    </body>
+
+
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+
+ 
+    <script>
+
+        var all_vids = [];
+        var id="{{id}}";
+        var href="{% url 'nextvideo' %}";
+
+        var curr_ind=9,i;
+
+        var vid = $("#video");
+
+    $( document ).ready(function() {
+        // e.preventDefault();
+
+        $.ajax({
+                url:href,
+                data:{'id':id},
+
+                success:function(response){
+                    
+                    var vids=response.vids;
+
+                    for (i=0;i<vids.length;i++)
+                    all_vids.push(vids[i]);
+
+                    curr_ind=response.index;
+                    
+                }
+              });
+
+    });
+
+    function play_next_video(){
+        curr_ind+=1;
+        if(curr_ind == all_vids.length)
+        curr_ind = 0;
+        vid.attr('src',all_vids[curr_ind]);
+    }
+
+    function play_prev_video(){
+        curr_ind-=1;
+        if(curr_ind<0)
+        curr_ind = 0;
+        vid.attr('src',all_vids[curr_ind]);
+    }
+
+    </script>
+
+
+<script>
+    var likebtn = $("#likeBtn");
+    var dislikebtn = $("#disBtn");
+    var hreff="{% url 'like_func' %}";
+    var likecnt = $(".lcount");
+    var dislikecnt = $(".dcount");
+
+    likebtn.on('click',function(e){
+        
+        var likeCon = likebtn.text();
+
+        lcnt=
+        $.ajax({
+                url:hreff,
+                data:{'vidid':id,'which':"1"},
+
+                success:function(response){
+                    if(likeCon=="LIKE"){
+                        likebtn.html("LIKED");
+                        dislikebtn.html("DISLIKE");
+                    }
+                    else{
+                        likebtn.html("LIKE");
+                    }
+                    likecnt.html(response.likecnt);
+                    dislikecnt.html(response.dislikecnt);
+                }
+              });
+    });
+
+    dislikebtn.on('click',function(e){
+       
+        var dislikeCon = dislikebtn.text();
+       
+        $.ajax({
+                url:hreff,
+                data:{'vidid':id,'which':"2"},
+
+                success:function(response){
+                    if(dislikeCon=="DISLIKE"){
+                        dislikebtn.html("DISLIKED");
+                        likebtn.html("LIKE");
+                    }
+                    else{
+                        dislikebtn.html("DISLIKE");
+                    }
+                    likecnt.html(response.likecnt);
+                    dislikecnt.html(response.dislikecnt);
+                }
+              });
+    });
+    
+</script>
+
+<script>
+    var id="{{id}}";
+    var likebtn = $("#likeBtn");
+    var dislikebtn = $("#disBtn");
+    var hreff="{% url 'like_func' %}";
+    var likecnt = $(".lcount");
+    var dislikecnt = $(".dcount");
+    var commentbtn = $('#comment');
+    var commentsprep = $('#cmnt_container')
+    var commentinpt = $('#commenttxt')
+    
+    commentbtn.on('click',(e)=>{
+        console.log("commentbtn")
+        console.log(commentinpt);
+        var commenttxt = commentinpt.val()
+        // if(commenttxt !== '')
+        $.ajax({
+            type:"GET",
+            url:"{% url 'handle_comment' %}",
+            data:{
+                'comment':commenttxt,
+                'videoid':id,
+                },
+            success:(response)=>{
+               
+           
+           var appendtxt = `<div class="comments-box">
+                           <ul class="comments-wrapper">
+                               <li class="comments-body">
+                               <div class="comments-img">UserName:</div>
+                               <div class="comments-text">${commenttxt}</div>
+                               </li>
+                           </ul>
+                           </div>`
+                        commentinpt.val('')
+           
+           commentsprep.prepend(appendtxt)
+           console.log(appendtxt)
+        
+            
+            }
+        })
+    })
+    likebtn.on('click',function(e){
+        
+        var likeCon = likebtn.text();
+
+        lcnt=
+        $.ajax({
+                url:hreff,
+                data:{'vidid':id,'which':"1"},
+
+                success:function(response){
+                    if(likeCon=="LIKE"){
+                        likebtn.html("LIKED");
+                        dislikebtn.html("DISLIKE");
+                    }
+                    else{
+                        likebtn.html("LIKE");
+                    }
+                    likecnt.html(response.likecnt);
+                    dislikecnt.html(response.dislikecnt);
+                }
+              });
+    });
+
+    dislikebtn.on('click',function(e){
+       
+        var dislikeCon = dislikebtn.text();
+       
+        $.ajax({
+                url:hreff,
+                data:{'vidid':id,'which':"2"},
+
+                success:function(response){
+                    if(dislikeCon=="DISLIKE"){
+                        dislikebtn.html("DISLIKED");
+                        likebtn.html("LIKE");
+                    }
+                    else{
+                        dislikebtn.html("DISLIKE");
+                    }
+                    likecnt.html(response.likecnt);
+                    dislikecnt.html(response.dislikecnt);
+                }
+              });
+    });
+    
+</script>
+
+
+
+    <script src="{% static 'courses/player.js' %}"></script>
+
+</html>

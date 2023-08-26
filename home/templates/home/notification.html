@@ -1,0 +1,223 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+
+    <link rel="stylesheet" href="{% static 'home/notify.css' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+</head>
+<body style="background-image: url('https://t3.ftcdn.net/jpg/04/17/56/42/360_F_417564202_pAQUKa34pthCKsSRCfN5PGp3ysgpUX59.jpg');background-repeat: no-repeat;background-size: cover;">
+<br><br>
+   <a style="margin-top: 1rem;margin-left: 2rem;" href="/"><button type="button" class="btn btn-primary">Back to Home</button></a>
+
+    <div class="container">
+        <div class="row">
+           <div class="col-md-6">
+              <!-- Success -->
+              <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md g-mb-30">
+
+                  <br><br>
+                 <a href="{% url 'deleteAll' %}"><button class="btn btn-success">Close all Notifications</button></a>
+                 <br><br>
+
+                 {%for i in notify%}
+                 <div class="noty_bar noty_type__success noty_theme__unify--v1 g-mb-25">
+
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-check"></i>
+                          </div>
+                       </div>
+                       <div style="font-size: larger;">{{i.message}}</div>
+                       <a href="{% url 'delete_notify' i.id %}"><button class="btn btn-warning">Close</button></a>
+                    </div>
+                    
+                </div>
+                {%endfor%}
+
+
+
+
+                 <!-- <div class="noty_bar noty_type__success noty_theme__unify--v1 noty_close_with_click noty_close_with_button g-mb-25">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-check"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_close_button">×</div>
+                 </div>
+                 <div class="noty_bar noty_type__success noty_theme__unify--v1 noty_close_with_click noty_has_progressbar noty_has_timeout">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-check"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_progressbar" style="width: 70%;"></div>
+                 </div>
+              </div> -->
+
+
+
+
+              <!-- End Success -->
+
+
+
+           </div>
+
+
+           <!-- <div class="col-md-6">
+              
+              <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md g-mb-30">
+                 <h3 class="d-flex align-self-center text-uppercase g-font-size-12 g-font-size-default--md g-color-black g-mb-20">Info</h3>
+                 <div class="noty_bar noty_type__info noty_theme__unify--v1 g-mb-25">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-info"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                 </div>
+                 <div class="noty_bar noty_type__info noty_theme__unify--v1 noty_close_with_click noty_close_with_button g-mb-25">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-info"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_close_button">×</div>
+                 </div>
+                 <div class="noty_bar noty_type__info noty_theme__unify--v1 noty_close_with_click noty_has_progressbar noty_has_timeout">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-info"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_progressbar" style="width: 70%;"></div>
+                 </div>
+              </div>
+              End Info
+           </div>
+        </div>
+        <div class="row">
+           <div class="col-md-6">
+              Error
+              <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md g-mb-30">
+                 <h3 class="d-flex align-self-center text-uppercase g-font-size-12 g-font-size-default--md g-color-black g-mb-20">Error</h3>
+                 <div class="noty_bar noty_type__error noty_theme__unify--v1 g-mb-25">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-alert"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                 </div>
+                 <div class="noty_bar noty_type__error noty_theme__unify--v1 noty_close_with_click noty_close_with_button g-mb-25">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-alert"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_close_button">×</div>
+                 </div>
+                 <div class="noty_bar noty_type__error noty_theme__unify--v1 noty_close_with_click noty_has_progressbar noty_has_timeout">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-alert"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_progressbar" style="width: 70%;"></div>
+                 </div>
+              </div>
+              End Error
+           </div>
+           <div class="col-md-6">
+              Warning
+              <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md g-mb-30">
+                 <h3 class="d-flex align-self-center text-uppercase g-font-size-12 g-font-size-default--md g-color-black g-mb-20">Warning</h3>
+                 <div class="noty_bar noty_type__warning noty_theme__unify--v1 g-mb-25">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-bolt"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                 </div>
+                 <div class="noty_bar noty_type__warning noty_theme__unify--v1 noty_close_with_click noty_close_with_button g-mb-25">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-bolt"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_close_button">×</div>
+                 </div>
+                 <div class="noty_bar noty_type__warning noty_theme__unify--v1 noty_close_with_click noty_has_progressbar noty_has_timeout">
+                    <div class="noty_body">
+                       <div class="g-mr-20">
+                          <div class="noty_body__icon">
+                             <i class="hs-admin-bolt"></i>
+                          </div>
+                       </div>
+                       <div>Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+                    <div class="noty_progressbar" style="width: 70%;"></div>
+                 </div>
+              </div>
+              End Warning
+           </div>
+        </div>
+
+
+         -->
+     </div>
+
+
+
+     <script>
+        function deleteIt(btn){
+           var btnclass = btn.
+        }
+     </script>
+
+
+</body>
+</html>

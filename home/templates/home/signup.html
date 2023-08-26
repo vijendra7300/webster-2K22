@@ -1,0 +1,121 @@
+{% load static %}
+{% load socialaccount %}
+<html>
+    <head>
+        <title>Sign Up</title>
+        <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+        <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+        <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/sign.css' %}">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/toast.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row container d-flex justify-content-center"> </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <a style="margin-left: 400px; margin-top: 3rem;" href="/" class="previous round">&#8249;</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <form action="/signup/" method="POST" class="box">{% csrf_token %}
+
+                            <h1>Sign Up</h1>
+                            <input required type="text" name="firstname" id="firstname" placeholder="First Name"> 
+                            <input required type="text" name="lastname" id="lastname" placeholder="Last Name"> 
+
+                            <input required type="email" name="emailid" id="emailid" placeholder="Email Id">
+                            <input required type="password" name="password" id="password" placeholder="Password"> 
+                            <input required type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password">
+
+                            <input required type="radio" name="category" value="1"><label style="color: white;">Teacher</label>
+                            <input required type="radio" value="2" name="category"><label style="color: white;">Student</label>
+                            <br><br><br>
+
+                            <a href="/login/" style="text-decoration: none; color: rgb(240, 245, 248);" class="al-login">Already Registered ? Log in Here</a>
+
+                            <input type="submit" name="signup_submit" value="Sign Up">
+
+                            <div class="col-md-12">
+                                <ul class="social-network social-circle">
+                                    <li><a onclick="storeDetails()" href={% provider_login_url 'google' %} class="icoGoogle" title="Google"><i style="font-size:50px" class="fa fa-google"></i></a></li>
+                                </ul>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script>  
+    function addToast(message) {
+          
+            toastr.options = {
+                "closeButton": true,
+                "debug": true,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "showDuration": "300",
+                "hideDuration": "3000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        toastr["error"](message);
+    }
+
+    function storeDetails(){
+        
+    }
+
+
+    {% if messages %}
+                {% for message in messages %}
+                let x;
+                let msg="{{message}}";
+                let l=msg.length;
+                let chk="Successfully signed in as";
+                if(l<=25){
+                    addToast("{{ message }}");
+                }
+                
+                else
+                {
+                    x=msg.substring(0,25);
+                    
+                    if(x!=chk){
+                        addToast(msg);
+                    }
+                }
+
+                {% endfor %}
+            {% endif %}
+        
+
+</script>
+
+
+
+
+    </body>
+</html>

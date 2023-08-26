@@ -1,0 +1,446 @@
+<html>
+    <head>
+        <title>Courses</title>
+        <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+></script>
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+
+<style>
+  .card-img-top{
+    height: 260px;
+    
+  }
+</style>
+
+    </head>
+
+    <body style="background-image: url('https://img.wallpapersafari.com/desktop/1600/900/86/37/POjQtp.png');background-repeat: no-repeat;background-size:cover;">
+        
+        <!-- Carousel wrapper -->
+<div
+id="carouselMultiItemExample"
+class="carousel slide carousel-dark text-center"
+data-mdb-ride="carousel"
+>
+
+<br>
+
+<a href="/"><i class="fas fa-angle-left fa-3x"></i></a>
+{%if what is 1%}
+<a style="margin-left: 1200px;" href="/courses/add_courseform/" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> New Course</a>
+{%endif%}
+<br><br><br>
+<!-- Inner -->
+<div class="carousel-inner py-4">
+  <!-- Single item -->
+
+  {% for i in all_courses %}
+  {% if forloop.counter is 1 %}
+  <!-- <script>console.log("{{i.0.name}}");</script> -->
+
+  <div class="carousel-item active">
+    <div class="container">
+      <div class="row">
+
+        {% if i.0 is not None %}
+        <div class="col-lg-4">
+          <div class="card">
+            <img
+              src="{{i.0.thumbnail.url}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.0.name}}</h5>
+              <p class="card-text">
+                {{i.0.description}}
+              </p>
+              <a href="/courses/seecourse/{{i.0.id}}" class="btn btn-primary">See Course</a>
+
+
+              {%if what is 2%}
+
+              <button class="btn btn-primary subscribe" id="{{i.0.id}}">
+
+                  {% if i.0 in stu_subs %}
+                    Subscribed
+                  
+
+                  {%else%}
+                    Subscribe
+                
+                  {%endif%}
+
+              </button>
+
+              {%endif%}
+
+
+              <!-- <a href="{% url 'delete' i.0.id %}" class="btn btn-primary" ><i class="fa fa-trash-o fa-2x"></i></a> -->
+
+
+            </div>
+          </div>
+        </div>
+        {%endif%}
+
+        {% if i.1 is not None %}
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img
+              src="{{i.1.thumbnail.url}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.1.name}}</h5>
+              <p class="card-text">
+                {{i.1.description}}
+              </p>
+              <a href="/courses/seecourse/{{i.1.id}}" class="btn btn-primary">See Course</a>
+
+
+              {%if what is 2%}
+
+              <button class="btn btn-primary subscribe" id="{{i.1.id}}">
+
+                  {% if i.1 in stu_subs %}
+                    Subscribed
+                  
+
+                  {%else%}
+                    Subscribe
+                
+                  {%endif%}
+
+              </button>
+
+              {%endif%}
+
+
+              <!-- <a href="{% url 'delete' i.0.id %}" class="btn btn-primary" ><i class="fa fa-trash-o fa-2x"></i></a> -->
+
+            </div>
+          </div>
+        </div>
+        {%endif%}
+
+        {% if i.2 is not None %}
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img
+              src="{{i.2.thumbnail.url}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.2.name}}</h5>
+              <p class="card-text">
+                {{i.2.description}}
+              </p>
+              <a href="/courses/seecourse/{{i.2.id}}" class="btn btn-primary">See Course</a>
+
+              {%if what is 2%}
+
+              <button class="btn btn-primary subscribe" id="{{i.2.id}}">
+
+                  {% if i.2 in stu_subs %}
+                    Subscribed
+                  
+
+                  {%else%}
+                    Subscribe
+                
+                  {%endif%}
+
+              </button>
+
+              {%endif%}
+
+
+              <!-- <a href="{% url 'delete' i.0.id %}" class="btn btn-primary" ><i class="fa fa-trash-o fa-2x"></i></a> -->
+
+            </div>
+          </div>
+        </div>
+        {%endif%}
+
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+  <!-- Single item -->
+  <div class="carousel-item">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-12">
+          <div class="card">
+            <img
+              src="{{i.0.thumbnail.url}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.0.name}}</h5>
+              <p class="card-text">
+                {{i.0.description}}
+
+              </p>
+              <a href="/courses/seecourse/{{i.0.id}}" class="btn btn-primary">See Course</a>
+
+              {%if what is 2%}
+
+              <button class="btn btn-primary subscribe" id="{{i.0.id}}">
+
+                  {% if i.0 in stu_subs %}
+                    Subscribed
+                  
+
+                  {%else%}
+                    Subscribe
+                
+                  {%endif%}
+
+              </button>
+
+              {%endif%}
+
+
+              <!-- <a href="{% url 'delete' i.0.id %}" class="btn btn-primary" ><i class="fa fa-trash-o fa-2x"></i></a> -->
+
+
+            </div>
+          </div>
+        </div>
+
+        {% if i.1 is not None %}
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img
+              src="{{i.1.thumbnail.url}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.1.name}}</h5>
+              <p class="card-text">
+                {{i.1.description}}
+
+              </p>
+              <a href="/courses/seecourse/{{i.1.id}}" class="btn btn-primary">See Course</a>
+
+              {%if what is 2%}
+
+              <button class="btn btn-primary subscribe" id="{{i.1.id}}">
+
+                  {% if i.1 in stu_subs %}
+                    Subscribed
+                  
+
+                  {%else%}
+                    Subscribe
+                
+                  {%endif%}
+
+              </button>
+
+              {%endif%}
+
+
+              <!-- <a href="{% url 'delete' i.0.id %}" class="btn btn-primary" ><i class="fa fa-trash-o fa-2x"></i></a> -->
+
+            </div>
+          </div>
+        </div>
+        {%endif%}
+
+        {% if i.2 is not None %}
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img
+              src="{{i.2.thumbnail.url}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.2.name}}</h5>
+              <p class="card-text">
+                {{i.2.description}}
+              </p>
+              <a href="/courses/seecourse/{{i.2.id}}" class="btn btn-primary">See Course</a>
+
+              {%if what is 2%}
+
+              <button class="btn btn-primary subscribe" id="{{i.0.id}}">
+
+                  {% if i.0 in stu_subs %}
+                    Subscribed
+                  
+
+                  {%else%}
+                    Subscribe
+                
+                  {%endif%}
+
+              </button>
+
+              {%endif%}
+
+
+              <!-- <a href="{% url 'delete' i.0.id %}" class="btn btn-primary" ><i class="fa fa-trash-o fa-2x"></i></a> -->
+
+            </div>
+          </div>
+        </div>
+        {%endif%}
+
+
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endfor %}
+  <!-- Single item -->
+  <!-- <div class="carousel-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+          <div class="card">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/nature/187.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk
+                of the card's content.
+              </p>
+              <a href="#!" class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+          <div class="card">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/nature/188.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk
+                of the card's content.
+              </p>
+              <a href="#!" class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+          <div class="card">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/nature/189.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk
+                of the card's content.
+              </p>
+              <a href="#!" class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+
+</div>
+<!-- Inner -->
+<!-- Controls -->
+<div class="d-flex justify-content-center mb-4">
+    <button
+      class="carousel-control-prev position-relative"
+      type="button"
+      data-mdb-target="#carouselMultiItemExample"
+      data-mdb-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next position-relative"
+      type="button"
+      data-mdb-target="#carouselMultiItemExample"
+      data-mdb-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<!-- Carousel wrapper -->
+
+
+<script>
+  $(".subscribe").on('click',function(e){
+        var conf=confirm("Are you sure you want to subscribe to this course");
+        if(conf){
+        var id=this.id;
+        var btnCon = $("#"+id).text();
+       
+        var href="{% url 'subscribe_course' %}";
+
+        
+        if(btnCon!="Subscribed"){
+          console.log("clicked")
+        $.ajax({
+            url:href,
+            data:{'courseid':id},
+            success:function(response){
+                $("#"+id).html("Subscribed");
+            }
+        });
+      }
+    }
+
+    });
+</script>
+
+
+    </body>
+ 
+
+</html>

@@ -1,0 +1,15 @@
+.btn {
+    margin-right: 0.5rem !important
+}
+
+.btn {
+    font-size: 0.875rem;
+    line-height: 1;
+    font-weight: 400;
+    padding: .7rem 1.5rem;
+    border-radius: 0.1275rem
+}
+
+.container {
+    margin-top: 100px
+}
